@@ -6,7 +6,7 @@
     "category": "Жидкости",
     "price": 590,
     "description": "Сочный микс лесных ягод: черника, ежевика и клубника.",
-    "image": "github.com/user-attachments/assets/e1a44865-2b31-401b-8ff1-f91ed26e8757",
+    "image": "https://picsum.photos/seed/vape1/160/160",
     "emoji": "🫐",
     "available": true
   },
@@ -17,7 +17,7 @@
     "category": "Жидкости",
     "price": 650,
     "description": "Тропический дуэт спелого манго и кислой маракуйи.",
-    "image": "https://github.com/user-attachments/assets/e1a44865-2b31-401b-8ff1-f91ed26e8757",
+    "image": "",
     "emoji": "🥭",
     "available": true
   },
@@ -28,7 +28,7 @@
     "category": "Одноразки",
     "price": 990,
     "description": "Голубая малина со льдом, до 800 затяжек.",
-    "image": "https://github.com/user-attachments/assets/e1a44865-2b31-401b-8ff1-f91ed26e8757",
+    "image": "https://picsum.photos/seed/vape2/160/160",
     "emoji": "💨",
     "available": true
   },
@@ -39,7 +39,7 @@
     "category": "Одноразки",
     "price": 790,
     "description": "Освежающая мята с холодком, до 600 затяжек.",
-    "image": "https://github.com/user-attachments/assets/e1a44865-2b31-401b-8ff1-f91ed26e8757",
+    "image": "",
     "emoji": "❄️",
     "available": false
   },
@@ -50,7 +50,7 @@
     "category": "POD-системы",
     "price": 2490,
     "description": "Компактная pod-система с керамическим испарителем.",
-    "image": "https://github.com/user-attachments/assets/e1a44865-2b31-401b-8ff1-f91ed26e8757",
+    "image": "https://picsum.photos/seed/vape3/160/160",
     "emoji": "🔋",
     "available": true
   },
@@ -61,7 +61,7 @@
     "category": "POD-системы",
     "price": 1890,
     "description": "Лёгкая и удобная замена сигаретам для никотиновых солей.",
-    "image": "https://github.com/user-attachments/assets/e1a44865-2b31-401b-8ff1-f91ed26e8757",
+    "image": "",
     "emoji": "💠",
     "available": true
   },
@@ -72,7 +72,7 @@
     "category": "Аксессуары",
     "price": 690,
     "description": "Сменные картриджи 0.8 Ом, вкус сохраняется дольше.",
-    "image": "https://github.com/user-attachments/assets/e1a44865-2b31-401b-8ff1-f91ed26e8757",
+    "image": "",
     "emoji": "🛠️",
     "available": true
   },
@@ -83,7 +83,7 @@
     "category": "Аксессуары",
     "price": 290,
     "description": "Защита от царапин и ударов, несколько цветов.",
-    "image": "https://github.com/user-attachments/assets/e1a44865-2b31-401b-8ff1-f91ed26e8757",
+    "image": "",
     "emoji": "🧰",
     "available": true
   },
@@ -94,7 +94,7 @@
     "category": "Жидкости",
     "price": 350,
     "description": "Классическая кола с холодком, крепкая соль 50 мг.",
-    "image": "https://github.com/user-attachments/assets/e1a44865-2b31-401b-8ff1-f91ed26e8757",
+    "image": "",
     "emoji": "🥤",
     "available": true
   },
@@ -105,7 +105,7 @@
     "category": "Жидкости",
     "price": 620,
     "description": "Холодная вишня с ментоловым послевкусием.",
-    "image": "https://github.com/user-attachments/assets/e1a44865-2b31-401b-8ff1-f91ed26e8757",
+    "image": "https://picsum.photos/seed/vape4/160/160",
     "emoji": "🍒",
     "available": true
   },
@@ -116,7 +116,7 @@
     "category": "Жидкости",
     "price": 570,
     "description": "Мягкий кофейный вкус со сливочными нотами.",
-    "image": "https://github.com/user-attachments/assets/e1a44865-2b31-401b-8ff1-f91ed26e8757",
+    "image": "",
     "emoji": "☕",
     "available": true
   },
@@ -127,7 +127,7 @@
     "category": "Жидкости",
     "price": 520,
     "description": "Спелая дыня с прохладной мятой.",
-    "image": "https://github.com/user-attachments/assets/e1a44865-2b31-401b-8ff1-f91ed26e8757",
+    "image": "https://picsum.photos/seed/vape5/160/160",
     "emoji": "🍈",
     "available": false
   },
@@ -138,7 +138,7 @@
     "category": "Одноразки",
     "price": 1090,
     "description": "Манго со льдом, до 1000 затяжек.",
-    "image": "https://github.com/user-attachments/assets/e1a44865-2b31-401b-8ff1-f91ed26e8757",
+    "image": "https://picsum.photos/seed/vape6/160/160",
     "emoji": "🥭",
     "available": true
   },
@@ -149,7 +149,7 @@
     "category": "Одноразки",
     "price": 940,
     "description": "Кислый виноград с лёгкой свежестью.",
-    "image": "https://github.com/user-attachments/assets/e1a44865-2b31-401b-8ff1-f91ed26e8757",
+    "image": "",
     "emoji": "🍇",
     "available": true
   }
