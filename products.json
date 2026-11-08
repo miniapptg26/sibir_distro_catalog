@@ -7,7 +7,7 @@
     "price": 590,
     "oldPrice": 690,
     "description": "Сочный микс лесных ягод: черника, ежевика и клубника.",
-    "image": "https://picsum.photos/seed/vape1/160/160",
+    "image": "",
     "badge": "-20%",
     "emoji": "🫐",
     "available": true
@@ -33,7 +33,7 @@
     "price": 990,
     "oldPrice": 1190,
     "description": "Голубая малина со льдом, до 800 затяжек.",
-    "image": "https://picsum.photos/seed/vape2/160/160",
+    "image": "",
     "badge": "хит",
     "emoji": "💨",
     "available": true
@@ -59,7 +59,7 @@
     "price": 2490,
     "oldPrice": 2890,
     "description": "Компактная pod-система с керамическим испарителем.",
-    "image": "https://picsum.photos/seed/vape3/160/160",
+    "image": "",
     "badge": "хит",
     "emoji": "🔋",
     "available": true
@@ -124,7 +124,7 @@
     "price": 620,
     "oldPrice": 0,
     "description": "Холодная вишня с ментоловым послевкусием.",
-    "image": "https://picsum.photos/seed/vape4/160/160",
+    "image": "",
     "badge": "хит",
     "emoji": "🍒",
     "available": true
@@ -150,7 +150,7 @@
     "price": 520,
     "oldPrice": 650,
     "description": "Спелая дыня с прохладной мятой.",
-    "image": "https://picsum.photos/seed/vape5/160/160",
+    "image": "",
     "badge": "-20%",
     "emoji": "🍈",
     "available": false
@@ -163,7 +163,7 @@
     "price": 1090,
     "oldPrice": 1290,
     "description": "Манго со льдом, до 1000 затяжек.",
-    "image": "https://picsum.photos/seed/vape6/160/160",
+    "image": "",
     "badge": "-15%",
     "emoji": "🥭",
     "available": true
