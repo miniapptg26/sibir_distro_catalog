@@ -28,14 +28,13 @@
       <div class="header-actions">
         <span id="countLabel" class="count-label">0 брендов</span>
         <button id="refreshBtn" class="header-round-btn" type="button" aria-label="Обновить каталог" title="Обновить каталог">🔄</button>
-        <button id="statsBtn" class="header-round-btn" type="button" aria-label="Статистика" title="Статистика">📊</button>
         <button id="exportBtn" class="header-round-btn" type="button" aria-label="Экспорт выборки" title="Скопировать прайс текущей выборки">📤</button>
         <button id="shareBtn" class="header-round-btn" type="button" aria-label="Поделиться каталогом" title="Скопировать ссылку на каталог">🔗</button>
         <button id="luckyBtn" class="lucky-btn" type="button" aria-label="Мне повезёт" title="Мне повезёт">🎲</button>
         <button id="themeToggle" class="theme-toggle" type="button" aria-label="Сменить тему" title="Сменить тему">🌙</button>
-        <button id="cartButton" class="cart-button" type="button" aria-label="Открыть корзину">
+        <button id="cartBtn" class="header-round-btn cart-btn" type="button" aria-label="Корзина" title="Корзина">
           <span aria-hidden="true">🛒</span>
-          <span id="cartCount" class="cart-count">0</span>
+          <span id="cartBadge" class="cart-badge hidden">0</span>
         </button>
       </div>
     </div>
@@ -90,19 +89,6 @@
     </section>
   </main>
 
-  <div id="cartBar" class="cart-bar" role="region" aria-label="Ваш заказ">
-    <div class="cart-head">
-      <span class="cart-title">Ваш заказ</span>
-      <button id="clearCartButton" class="clear-button" type="button">Очистить</button>
-    </div>
-    <ul id="cartItems" class="cart-items"></ul>
-    <div class="cart-total-row">
-      <span>Итого</span>
-      <span id="cartTotal">0 ₽</span>
-    </div>
-    <button id="sendOrderButton" class="send-button" type="button">Отправить заказ</button>
-  </div>
-
   <button id="toTop" class="to-top" type="button" aria-label="Наверх" title="Наверх">↑</button>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
@@ -127,15 +113,16 @@
     </div>
   </div>
 
-  <!-- Модалка статистики -->
-  <div id="statsModal" class="modal" aria-hidden="true">
-    <div class="modal-overlay" data-close-stats=""></div>
-    <div class="modal-panel detail-panel" role="dialog" aria-modal="true" aria-label="Статистика каталога">
-      <div class="modal-head stats-head">
-        <span class="modal-head-title">📊 Статистика</span>
+  <!-- Модалка корзины: открывается кнопкой 🛒 в шапке -->
+  <div id="cartModal" class="modal" aria-hidden="true">
+    <div class="modal-overlay" data-close-cart=""></div>
+    <div class="modal-panel cart-panel" role="dialog" aria-modal="true" aria-label="Корзина">
+      <div class="modal-head">
+        <span class="modal-head-title">Корзина</span>
+        <span id="cartModalCount" class="cart-head-count"></span>
       </div>
-      <button id="statsCloseBtn" class="detail-close" type="button" aria-label="Закрыть">✕</button>
-      <div id="statsBody" class="stats-body"></div>
+      <button id="cartCloseBtn" class="detail-close" type="button" aria-label="Закрыть">✕</button>
+      <div id="cartModalBody" class="cart-modal-body"></div>
       <p class="modal-hint">Esc — закрыть</p>
     </div>
   </div>
