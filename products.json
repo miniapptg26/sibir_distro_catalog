@@ -8,7 +8,7 @@
     "oldPrice": 690,
     "description": "Сочный микс лесных ягод: черника, ежевика и клубника.",
     "image": "https://github.com/user-attachments/assets/be68f400-9ae4-4686-93ae-000b004123e1",
-    "badge": "-20%",
+    "badge": "",
     "emoji": "🫐",
     "available": true
   },
@@ -34,7 +34,7 @@
     "oldPrice": 1190,
     "description": "Голубая малина со льдом, до 800 затяжек.",
     "image": "https://github.com/user-attachments/assets/e1a44865-2b31-401b-8ff1-f91ed26e8757",
-    "badge": "хит",
+    "badge": "",
     "emoji": "💨",
     "available": true
   },
@@ -60,7 +60,7 @@
     "oldPrice": 2890,
     "description": "Компактная pod-система с керамическим испарителем.",
     "image": "https://github.com/user-attachments/assets/fecbd5db-eb30-4934-8ea2-33d782966bb4",
-    "badge": "хит",
+    "badge": "",
     "emoji": "🔋",
     "available": true
   },
@@ -125,7 +125,7 @@
     "oldPrice": 0,
     "description": "Холодная вишня с ментоловым послевкусием.",
     "image": "https://github.com/user-attachments/assets/fecbd5db-eb30-4934-8ea2-33d782966bb4",
-    "badge": "хит",
+    "badge": "",
     "emoji": "🍒",
     "available": true
   },
