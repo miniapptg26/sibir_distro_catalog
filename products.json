@@ -46,8 +46,8 @@
     "price": 790,
     "oldPrice": 0,
     "description": "Освежающая мята с холодком, до 600 затяжек.",
-    "image": "",
-    "badge": "https://github.com/user-attachments/assets/fecbd5db-eb30-4934-8ea2-33d782966bb4",
+    "image": "https://github.com/user-attachments/assets/fecbd5db-eb30-4934-8ea2-33d782966bb4",
+    "badge": "",
     "emoji": "❄️",
     "available": false
   },
@@ -112,7 +112,7 @@
     "oldPrice": 0,
     "description": "Классическая кола с холодком, крепкая соль 50 мг.",
     "image": "https://github.com/user-attachments/assets/fecbd5db-eb30-4934-8ea2-33d782966bb4",
-    "badge": "-20%",
+    "badge": "",
     "emoji": "🥤",
     "available": true
   },
