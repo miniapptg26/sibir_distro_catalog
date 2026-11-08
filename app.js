@@ -20,7 +20,21 @@ const CATEGORY_EMOJI = {
 
 const DEFAULT_EMOJI = '📦';
 
-/* ===== Медиа: изображение или эмодзи-заглушка ===== */
+/* ===== Медиа: одно изображение с ленивой загрузкой или эмодзи-заглушка ===== */
+
+/* Размеры контейнера (1x — width/height) и запроса картинки (2x, ≤640) */
+const MEDIA_SIZES = {
+  'brand-img':      { box: 160, src: 320 }, // карточка бренда на главном экране
+  'brand-head-img': { box: 240, src: 480 }, // шапка окна бренда (#brandModal)
+  'modal-media':    { box: 240, src: 480 }  // модалка деталей (#detailModal)
+};
+
+function mediaSizeFor(sizeClass) {
+  const key = String(sizeClass || '').trim();
+  return MEDIA_SIZES[key] || MEDIA_SIZES['brand-img'];
+}
+
+/* Эмодзи-заглушка: эмодзи товара, иначе по категории */
 function buildEmojiEl(item, sizeClass) {
   const span = document.createElement('span');
   span.className = 'media-emoji' + (sizeClass ? ' ' + sizeClass : '');
@@ -28,57 +42,201 @@ function buildEmojiEl(item, sizeClass) {
   return span;
 }
 
-/*
- * buildMediaEl(item, sizeClass):
- * Медиа строится ТОЛЬКО у бренда и в модалке деталей вкуса:
- *   карточка бренда (.brand-media), шапка окна бренда (.brand-head-media)
- *   и #detailModal. Список вкусов внутри окна бренда (.flavor-row) медиа
- *   не использует — там только текст и действия.
- * - image — непустая строка: создаём <img> с lazy-загрузкой, без referrer,
- *   width/height = 80 (карточка) или 120 (модалка), alt = item.name.
- *   До загрузки — класс .img-loading (opacity 0), после 'load' — .img-loaded
- *   (opacity 1, переход 0.2s). При ошибке заменяет себя эмодзи-заглушкой
- *   с dataset.fallback='1' (повторно не грузим).
- * - 'http://' (не https) — сразу эмодзи-фолбэк, небезопасный контент не грузим.
- * - иначе — span.media-emoji.
- */
-function buildMediaEl(item, sizeClass) {
-  const rawImage = typeof item.image === 'string' ? item.image.trim() : '';
-  const isModal = sizeClass && String(sizeClass).indexOf('modal') !== -1;
-  const dim = isModal ? 120 : 80;
-
-  // Небезопасный http:// — не грузим, сразу эмодзи-фолбэк
-  if (rawImage.indexOf('http://') === 0) {
-    return emojiFallback(item, sizeClass);
-  }
-
-  if (rawImage !== '') {
-    const img = document.createElement('img');
-    img.className = (sizeClass || '') + ' img-loading';
-    img.src = rawImage;
-    img.alt = item.name != null ? String(item.name) : '';
-    img.width = dim;
-    img.height = dim;
-    img.loading = 'lazy';
-    img.decoding = 'async';
-    img.referrerPolicy = 'no-referrer';
-    img.addEventListener('load', function () {
-      this.classList.remove('img-loading');
-      this.classList.add('img-loaded');
-    }, false);
-    img.addEventListener('error', function () {
-      img.replaceWith(emojiFallback(item, sizeClass));
-    }, false);
-    return img;
-  }
-  return buildEmojiEl(item, sizeClass);
-}
-
 /* Эмодзи-фолбэк с пометкой, что картинка не загружалась */
 function emojiFallback(item, sizeClass) {
   const el = buildEmojiEl(item, sizeClass);
   el.dataset.fallback = '1';
   return el;
+}
+
+/*
+ * optimizedImageUrl(url, width, height) — чистая функция.
+ * Для хостинга picsum.photos приводит размеры к нужным (2x от контейнера):
+ *   https://picsum.photos/seed/<seed>/<w>/<h> и https://picsum.photos/<w>/<h>.
+ * Ограничение — не больше 640. Для остальных хостов возвращает URL как есть.
+ * Query-параметры и #якоря не теряются.
+ */
+function optimizedImageUrl(url, width, height) {
+  if (typeof url !== 'string' || url === '') return url;
+
+  let parsed;
+  try {
+    parsed = new URL(url);
+  } catch (e) {
+    return url;
+  }
+  if (parsed.protocol !== 'https:' || parsed.hostname !== 'picsum.photos') return url;
+
+  const MAX = 640;
+  const w = Math.min(MAX, Math.max(1, Math.round(Number(width) || 0)));
+  const h = Math.min(MAX, Math.max(1, Math.round(Number(height) || 0)));
+  if (!w || !h) return url;
+
+  const isNum = (s) => /^\d+$/.test(s);
+  const segments = parsed.pathname.split('/').filter((s) => s !== '');
+
+  // /seed/<seed>/<w>/<h>
+  if (segments.length === 4 && segments[0] === 'seed' &&
+      isNum(segments[2]) && isNum(segments[3])) {
+    parsed.pathname = '/seed/' + segments[1] + '/' + w + '/' + h;
+    return parsed.toString();
+  }
+
+  // /<w>/<h>
+  if (segments.length === 2 && isNum(segments[0]) && isNum(segments[1])) {
+    parsed.pathname = '/' + w + '/' + h;
+    return parsed.toString();
+  }
+
+  return url;
+}
+
+/*
+ * imageHosts(items) — чистая функция: до 3 уникальных https-хостов
+ * изображений из данных (для предварительного прогрева соединений).
+ */
+function imageHosts(items) {
+  const out = [];
+  const list = Array.isArray(items) ? items : [];
+
+  list.forEach((item) => {
+    if (!item || typeof item !== 'object') return;
+    const raw = typeof item.image === 'string' ? item.image.trim() : '';
+    if (raw.indexOf('https://') !== 0) return;
+
+    let host = '';
+    try {
+      host = new URL(raw).hostname;
+    } catch (e) {
+      return;
+    }
+    if (host && out.indexOf(host) === -1 && out.length < 3) out.push(host);
+  });
+
+  return out;
+}
+
+/* Прогрев соединений: <link rel="preconnect" crossorigin> к найденным хостам */
+function warmImageHosts(items) {
+  if (!document.head) return;
+  imageHosts(items).forEach((host) => {
+    if (document.head.querySelector('link[rel="preconnect"][data-host="' + host + '"]')) return;
+    const link = document.createElement('link');
+    link.rel = 'preconnect';
+    link.href = 'https://' + host;
+    link.crossOrigin = 'anonymous';
+    link.dataset.host = host;
+    document.head.appendChild(link);
+  });
+}
+
+/* ===== Ленивая подгрузка: data-src → src при приближении к окну просмотра ===== */
+let mediaObserver = null;
+let mediaObserverReady = false;
+
+/*
+ * loadLazyImage(img): переносит data-src в src только один раз.
+ * Повторно не грузим — защита от перерисовок через dataset.loaded.
+ */
+function loadLazyImage(img) {
+  if (!img || img.dataset.loaded === '1') return;
+  const url = img.dataset.src;
+  if (!url) return;
+  img.dataset.loaded = '1';
+  img.src = url;
+}
+
+/* Единый IntersectionObserver с rootMargin 300px; при отсутствии — грузим сразу */
+function getMediaObserver() {
+  if (mediaObserverReady) return mediaObserver;
+  mediaObserverReady = true;
+
+  if (typeof IntersectionObserver !== 'function') {
+    mediaObserver = null;
+    return null;
+  }
+
+  mediaObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      mediaObserver.unobserve(entry.target);
+      loadLazyImage(entry.target);
+    });
+  }, { rootMargin: '300px 0px' });
+
+  return mediaObserver;
+}
+
+/* Контейнер медиа: квадрат 1/1 с фоновой shimmer-заглушкой (см. style.css) */
+function buildMediaHolder() {
+  const holder = document.createElement('div');
+  holder.className = 'media-holder';
+  return holder;
+}
+
+/*
+ * buildMediaEl(item, sizeClass, options) — единая фабрика медиа.
+ * Возвращает контейнер .media-holder (aspect-ratio 1/1, фоновая заглушка),
+ * внутри — либо <img> с ленивой загрузкой, либо span.media-emoji.
+ * Используется только там, где фото есть по дизайну: карточка бренда,
+ * шапка окна бренда и модалка деталей (список вкусов фото не показывает).
+ *
+ * options.priority === true → fetchpriority="high" (первые 4 карточки экрана),
+ * иначе fetchpriority="low".
+ *
+ * <img> создаётся без src: адрес лежит в data-src и подставляется лениво тем,
+ * кто первым «увидит» элемент (IntersectionObserver, rootMargin 300px), после
+ * чего data-src удаляется. До загрузки — .img-loading (opacity 0), после
+ * 'load' — .img-loaded (плавное появление). http:// (не https) и ошибка
+ * загрузки → эмодзи-фолбэк с dataset.fallback='1' без повторных попыток.
+ */
+function buildMediaEl(item, sizeClass, options) {
+  const size = mediaSizeFor(sizeClass);
+  const rawImage = typeof item.image === 'string' ? item.image.trim() : '';
+  const holder = buildMediaHolder();
+
+  // Пустая ссылка — сразу эмодзи
+  if (rawImage === '') {
+    holder.appendChild(buildEmojiEl(item, sizeClass));
+    return holder;
+  }
+
+  // Небезопасный http:// — не грузим, сразу эмодзи-фолбэк
+  if (rawImage.indexOf('http://') === 0) {
+    holder.appendChild(emojiFallback(item, sizeClass));
+    return holder;
+  }
+
+  const img = document.createElement('img');
+  img.className = (sizeClass || '') + ' img-loading';
+  img.alt = item.name != null ? String(item.name) : '';
+  img.width = size.box;
+  img.height = size.box;
+  img.setAttribute('loading', 'lazy');
+  img.setAttribute('decoding', 'async');
+  img.setAttribute('draggable', 'false');
+  img.setAttribute('fetchpriority', (options && options.priority) ? 'high' : 'low');
+  img.setAttribute('referrerpolicy', 'no-referrer');
+  img.dataset.src = optimizedImageUrl(rawImage, size.src, size.src);
+
+  img.addEventListener('load', function () {
+    this.classList.remove('img-loading');
+    this.classList.add('img-loaded');
+    if (this.dataset) delete this.dataset.src;
+  }, false);
+
+  img.addEventListener('error', function () {
+    const fb = emojiFallback(item, sizeClass);
+    if (typeof this.replaceWith === 'function') this.replaceWith(fb);
+  }, false);
+
+  holder.appendChild(img);
+
+  const observer = getMediaObserver();
+  if (observer) observer.observe(img);
+  else loadLazyImage(img); // IntersectionObserver недоступен — грузим сразу
+
+  return holder;
 }
 
 /* ===== Ключи localStorage (только личные настройки пользователя) ===== */
@@ -526,10 +684,8 @@ function normalizeItems(raw) {
       brand: typeof item.brand === 'string' ? item.brand : '',
       category: (typeof item.category === 'string' && item.category.trim() !== '') ? item.category : 'Другое',
       price: num(item.price),
-      oldPrice: num(item.oldPrice),
       description: typeof item.description === 'string' ? item.description : '',
       image: typeof item.image === 'string' ? item.image : '',
-      badge: typeof item.badge === 'string' ? item.badge : '',
       emoji: typeof item.emoji === 'string' ? item.emoji : '',
       available: item.available !== false
     });
@@ -577,6 +733,7 @@ async function loadProducts() {
       return;
     }
     state.products = parsed.data;
+    warmImageHosts(parsed.data);
   } catch (err) {
     showLoader(false);
     showLoadError(err && err.message ? err.message : 'неизвестная ошибка', false);
@@ -632,10 +789,10 @@ function renderChips() {
   const favLabel = document.createElement('span');
   favLabel.textContent = '❤ Избранное';
   favChip.appendChild(favLabel);
-  const favBadge = document.createElement('span');
-  favBadge.className = 'chip-badge';
-  favBadge.textContent = state.favs.size;
-  favChip.appendChild(favBadge);
+  const favCount = document.createElement('span');
+  favCount.className = 'chip-num';
+  favCount.textContent = state.favs.size;
+  favChip.appendChild(favCount);
   chipsEl.appendChild(favChip);
 
   const categories = ['Все', ...new Set(
@@ -846,11 +1003,9 @@ function getFiltered() {
   return getFilteredFlavors();
 }
 
-/* Актуальная цена со скидкой: учитывается oldPrice (берём минимальную из price/oldPrice) */
+/* Цена товара: единственная цена, хранится в поле price */
 function effectivePrice(product) {
-  const price = Number(product.price) || 0;
-  const old = Number(product.oldPrice) || 0;
-  return (old > 0 && old < price) ? old : price;
+  return Number(product.price) || 0;
 }
 
 /* ===== Сброс фильтров ===== */
@@ -968,7 +1123,7 @@ function renderCatalog() {
   const query = state.search.trim().toLowerCase();
 
   visible.forEach((group, i) => {
-    const card = createBrandCard(group);
+    const card = createBrandCard(group, i < 4);
     // Стаггер-анимация: порядковый номер в --i
     card.style.setProperty('--i', String(i));
     // Подсветка поиска: название бренда, безопасно (без innerHTML)
@@ -1018,39 +1173,8 @@ function markText(element, query) {
    Главный экран: карточки брендов
    ============================================================ */
 
-/* Класс бейджа: скидочные → badge-sale, «хит» → badge-hot */
-function badgeClass(badge) {
-  const text = String(badge || '').trim();
-  if (text === '') return 'badge';
-  if (text.indexOf('%') !== -1) return 'badge badge-sale';
-  if (text.toLowerCase().indexOf('хит') !== -1) return 'badge badge-hot';
-  return 'badge';
-}
-
-/* Бейдж бренда: «от −20%» при акциях, иначе «есть хит» */
-function brandBadge(group) {
-  let bestPercent = 0;
-  let hasHit = false;
-
-  group.items.forEach((item) => {
-    const price = Number(item.price) || 0;
-    const old = Number(item.oldPrice) || 0;
-    if (old > price && price > 0) {
-      const percent = Math.round((1 - price / old) * 100);
-      if (percent > bestPercent) bestPercent = percent;
-    }
-    if (item.badge && String(item.badge).toLowerCase().indexOf('хит') !== -1) {
-      hasHit = true;
-    }
-  });
-
-  if (bestPercent > 0) return { text: 'от −' + bestPercent + '%', cls: 'badge-sale' };
-  if (hasHit) return { text: 'есть хит', cls: 'badge-hot' };
-  return null;
-}
-
 /* Карточка бренда в сетке .catalog */
-function createBrandCard(group) {
+function createBrandCard(group, priority) {
   const card = document.createElement('article');
   card.className = 'brand-card';
   card.dataset.brand = group.brand;
@@ -1061,15 +1185,7 @@ function createBrandCard(group) {
 
   const media = document.createElement('div');
   media.className = 'brand-media';
-  media.appendChild(buildMediaEl(brandMediaItem(group), 'brand-img'));
-
-  const badge = brandBadge(group);
-  if (badge) {
-    const badgeEl = document.createElement('span');
-    badgeEl.className = badge.cls;
-    badgeEl.textContent = badge.text;
-    media.appendChild(badgeEl);
-  }
+  media.appendChild(buildMediaEl(brandMediaItem(group), 'brand-img', { priority: !!priority }));
 
   const info = document.createElement('div');
   info.className = 'brand-info';
@@ -1118,14 +1234,14 @@ function createFavButton(product) {
    ============================================================ */
 
 /* Одна строка вкуса внутри #brandModal — БЕЗ медиа: название, категория,
-   бейдж акции, цена, сердечко ❤ и кнопка «+ Добавить» → степпер «− N +».
+   цена, сердечко ❤ и кнопка «+ Добавить» → степпер «− N +».
    Фото/эмодзи есть только у бренда (карточка и шапка окна бренда). */
 function createFlavorRow(item, query) {
   const row = document.createElement('div');
   row.className = 'flavor-row' + (item.available === false ? ' unavailable' : '');
   row.dataset.id = item.id;
 
-  /* Текстовый блок: название (serif), категория, бейдж акции */
+  /* Текстовый блок: название (serif), категория, цена */
   const info = document.createElement('div');
   info.className = 'flavor-info';
 
@@ -1139,13 +1255,6 @@ function createFlavorRow(item, query) {
   cat.textContent = item.category || '';
   info.appendChild(cat);
 
-  if (item.badge) {
-    const badge = document.createElement('span');
-    badge.className = badgeClass(item.badge) + ' flavor-badge';
-    badge.textContent = item.badge;
-    info.appendChild(badge);
-  }
-
   const priceRow = document.createElement('div');
   priceRow.className = 'flavor-price-row';
 
@@ -1154,12 +1263,6 @@ function createFlavorRow(item, query) {
   price.textContent = formatPrice(item.price);
   priceRow.appendChild(price);
 
-  if (item.oldPrice && item.oldPrice > item.price) {
-    const oldPrice = document.createElement('span');
-    oldPrice.className = 'flavor-old-price';
-    oldPrice.textContent = formatPrice(item.oldPrice);
-    priceRow.appendChild(oldPrice);
-  }
   info.appendChild(priceRow);
 
   if (item.available === false) {
@@ -1657,17 +1760,10 @@ function closeDetail() {
 function renderDetail(item) {
   detailBody.replaceChildren();
 
-  // Медиа-шапка: фото или эмодзи-заглушка (buildMediaEl, 120px)
+  // Медиа-шапка: фото или эмодзи-заглушка (buildMediaEl, квадрат)
   const media = document.createElement('div');
   media.className = 'detail-media';
   media.appendChild(buildMediaEl(item, 'modal-media'));
-
-  if (item.badge) {
-    const badge = document.createElement('span');
-    badge.className = badgeClass(item.badge) + ' detail-badge';
-    badge.textContent = item.badge;
-    media.appendChild(badge);
-  }
   detailBody.appendChild(media);
 
   // Название
@@ -1676,7 +1772,7 @@ function renderDetail(item) {
   name.textContent = item.name || 'Без названия';
   detailBody.appendChild(name);
 
-  // Бренд-бейдж
+  // Бренд
   if (item.brand) {
     const brand = document.createElement('span');
     brand.className = 'detail-brand';
@@ -1684,7 +1780,7 @@ function renderDetail(item) {
     detailBody.appendChild(brand);
   }
 
-  // Цена
+  // Цена — единственная, без зачёркнутой
   const priceRow = document.createElement('div');
   priceRow.className = 'detail-price-row';
 
@@ -1692,13 +1788,6 @@ function renderDetail(item) {
   price.className = 'detail-price';
   price.textContent = formatPrice(item.price);
   priceRow.appendChild(price);
-
-  if (item.oldPrice && item.oldPrice > item.price) {
-    const old = document.createElement('span');
-    old.className = 'detail-old-price';
-    old.textContent = formatPrice(item.oldPrice);
-    priceRow.appendChild(old);
-  }
   detailBody.appendChild(priceRow);
 
   // Кликабельная категория: «📁 <категория>»
@@ -1794,10 +1883,6 @@ function renderStats() {
   const sumPrices = available.reduce((s, p) => s + effectivePrice(p), 0);
   const avgPrice = available.length > 0 ? sumPrices / available.length : 0;
 
-  const discounted = all.filter((p) =>
-    (Number(p.oldPrice) || 0) > (Number(p.price) || 0)
-  ).length;
-
   const sortedByPrice = available.slice().sort((a, b) => effectivePrice(a) - effectivePrice(b));
   const cheapest = sortedByPrice[0];
   const priciest = sortedByPrice[sortedByPrice.length - 1];
@@ -1811,7 +1896,6 @@ function renderStats() {
   statsBody.appendChild(makeStatRow('Категорий', String(categoriesCount)));
   statsBody.appendChild(makeStatRow('Средняя цена (в наличии)', formatPrice(avgPrice), 'accent'));
   statsBody.appendChild(makeStatRow('В наличии', String(available.length)));
-  statsBody.appendChild(makeStatRow('Со скидкой', String(discounted), 'accent'));
   statsBody.appendChild(makeStatRow('Самый дорогой', describe(priciest)));
   statsBody.appendChild(makeStatRow('Самый дешёвый', describe(cheapest)));
 

@@ -345,8 +345,8 @@ button {
   box-shadow: 0 0 16px rgba(217, 164, 65, 0.28), 0 4px 14px rgba(80, 50, 20, 0.35);
 }
 
-/* Чип «Избранное» с бейджем-счётчиком */
-.fav-chip .chip-badge {
+/* Чип «Избранное» со счётчиком */
+.fav-chip .chip-num {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -362,7 +362,7 @@ button {
   border-radius: 999px;
 }
 
-.chip.active.fav-chip .chip-badge {
+.chip.active.fav-chip .chip-num {
   color: #f7edd6;
   background: rgba(247, 237, 214, 0.22);
   border-color: transparent;
@@ -406,42 +406,50 @@ button {
   line-height: 1;
 }
 
+/* Контейнер медиа: квадрат 1/1 с фоновой shimmer-заглушкой — вёрстка
+   не «прыгает», пока грузится фото (мягкий приглушённый ретро-градиент) */
+.media-holder {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: rgba(139, 90, 43, 0.16);
+  background-image: linear-gradient(100deg,
+    rgba(139, 90, 43, 0.16) 0%,
+    rgba(217, 164, 65, 0.30) 45%,
+    rgba(139, 90, 43, 0.16) 100%);
+  background-size: 200% 100%;
+  background-position: 0 0;
+  animation: mediaShimmer 1.8s ease-in-out infinite;
+}
+
+@keyframes mediaShimmer {
+  to { background-position: 200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .media-holder { animation: none; }
+}
+
+.media-holder > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 /* Плавное появление картинки: пока не загрузилась — прозрачная,
-   после 'load' (класс .img-loaded) — плавный переход 0.2s */
+   после 'load' (класс .img-loaded) — плавное появление 0.25s */
 .img-loading {
   opacity: 0;
 }
 
 .img-loaded {
   opacity: 1;
-  transition: opacity 0.2s ease;
-}
-
-/* Бейджи: «-20%» терракотовым, «хит» янтарным */
-.badge {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  z-index: 2;
-  padding: 4px 10px;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  border-radius: 999px;
-  box-shadow: 0 4px 14px rgba(40, 24, 8, 0.45);
-}
-
-.badge-sale {
-  color: #fff6e0;
-  background: linear-gradient(135deg, #d98a4e, #b3452e);
-  box-shadow: 0 4px 14px rgba(179, 69, 46, 0.5);
-}
-
-.badge-hot {
-  color: #3b2d1a;
-  background: linear-gradient(135deg, #e8c05a, #b8862a);
-  box-shadow: 0 4px 14px rgba(184, 134, 42, 0.5);
+  transition: opacity 0.25s ease;
 }
 
 /* Сердечко избранного — 38px круг в правом верхнем углу карточки */
@@ -868,17 +876,21 @@ button {
   flex-direction: column;
 }
 
-/* Медиа-шапка: 120px эмодзи на коричнево-янтарном градиенте или фото */
+/* Медиа-шапка модалки: квадратное фото (или эмодзи) по центру градиента */
 .detail-media {
   position: relative;
-  height: 120px;
-  flex: 0 0 120px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 16px;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
   background: linear-gradient(135deg, rgba(139, 90, 43, 0.35), rgba(217, 164, 65, 0.12));
+}
+
+.detail-media .media-holder {
+  width: min(100%, 240px);
+  border-radius: 16px;
 }
 
 .detail-media .media-emoji {
@@ -887,19 +899,9 @@ button {
   filter: drop-shadow(0 10px 20px rgba(40, 24, 8, 0.55));
 }
 
-/* Фото в модалке: 120px, cover, скругление 16px */
+/* Фото в модалке: квадрат внутри .media-holder, cover, скругление 16px */
 .modal-media {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-  display: block;
   border-radius: 16px;
-}
-
-.detail-badge {
-  top: 12px;
-  left: 12px;
-  z-index: 4;
 }
 
 .detail-body > :not(.detail-media) {
@@ -949,12 +951,6 @@ button {
   font-weight: 900;
   color: var(--price);
   text-shadow: 0 0 22px rgba(217, 164, 65, 0.3);
-}
-
-.detail-old-price {
-  font-size: 1rem;
-  color: var(--muted);
-  text-decoration: line-through;
 }
 
 .detail-stock {
@@ -1122,7 +1118,7 @@ html.light .search-input::placeholder {
   color: var(--muted);
 }
 
-html.light .chip .chip-badge {
+html.light .chip .chip-num {
   color: #b3454a;
 }
 
@@ -2207,15 +2203,6 @@ html.light .skeleton-card {
   overflow-wrap: break-word;
 }
 
-.flavor-row .flavor-badge {
-  position: static;
-  width: max-content;
-  margin: 0;
-  padding: 2px 8px;
-  font-size: 0.62rem;
-  box-shadow: none;
-}
-
 .flavor-price-row {
   display: flex;
   align-items: baseline;
@@ -2227,12 +2214,6 @@ html.light .skeleton-card {
   font-size: 0.95rem;
   font-weight: 800;
   color: var(--price);
-}
-
-.flavor-old-price {
-  font-size: 0.76rem;
-  color: var(--muted);
-  text-decoration: line-through;
 }
 
 .flavor-stock {
