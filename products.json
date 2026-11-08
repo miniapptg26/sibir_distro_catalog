@@ -20,7 +20,7 @@
     "price": 650,
     "oldPrice": 0,
     "description": "Тропический дуэт спелого манго и кислой маракуйи.",
-    "image": "",
+    "image": "https://github.com/user-attachments/assets/fecbd5db-eb30-4934-8ea2-33d782966bb4",
     "badge": "",
     "emoji": "🥭",
     "available": true
@@ -47,7 +47,7 @@
     "oldPrice": 0,
     "description": "Освежающая мята с холодком, до 600 затяжек.",
     "image": "",
-    "badge": "",
+    "badge": "https://github.com/user-attachments/assets/fecbd5db-eb30-4934-8ea2-33d782966bb4",
     "emoji": "❄️",
     "available": false
   },
@@ -72,7 +72,7 @@
     "price": 1890,
     "oldPrice": 0,
     "description": "Лёгкая и удобная замена сигаретам для никотиновых солей.",
-    "image": "",
+    "image": "https://github.com/user-attachments/assets/fecbd5db-eb30-4934-8ea2-33d782966bb4",
     "badge": "",
     "emoji": "💠",
     "available": true
@@ -85,7 +85,7 @@
     "price": 690,
     "oldPrice": 0,
     "description": "Сменные картриджи 0.8 Ом, вкус сохраняется дольше.",
-    "image": "",
+    "image": "https://github.com/user-attachments/assets/fecbd5db-eb30-4934-8ea2-33d782966bb4",
     "badge": "",
     "emoji": "🛠️",
     "available": true
@@ -98,7 +98,7 @@
     "price": 290,
     "oldPrice": 0,
     "description": "Защита от царапин и ударов, несколько цветов.",
-    "image": "",
+    "image": "https://github.com/user-attachments/assets/fecbd5db-eb30-4934-8ea2-33d782966bb4",
     "badge": "",
     "emoji": "🧰",
     "available": true
@@ -111,7 +111,7 @@
     "price": 350,
     "oldPrice": 0,
     "description": "Классическая кола с холодком, крепкая соль 50 мг.",
-    "image": "",
+    "image": "https://github.com/user-attachments/assets/fecbd5db-eb30-4934-8ea2-33d782966bb4",
     "badge": "-20%",
     "emoji": "🥤",
     "available": true
@@ -124,7 +124,7 @@
     "price": 620,
     "oldPrice": 0,
     "description": "Холодная вишня с ментоловым послевкусием.",
-    "image": "",
+    "image": "https://github.com/user-attachments/assets/fecbd5db-eb30-4934-8ea2-33d782966bb4",
     "badge": "хит",
     "emoji": "🍒",
     "available": true
@@ -137,7 +137,7 @@
     "price": 570,
     "oldPrice": 0,
     "description": "Мягкий кофейный вкус со сливочными нотами.",
-    "image": "",
+    "image": "https://github.com/user-attachments/assets/fecbd5db-eb30-4934-8ea2-33d782966bb4",
     "badge": "",
     "emoji": "☕",
     "available": true
@@ -150,8 +150,8 @@
     "price": 520,
     "oldPrice": 650,
     "description": "Спелая дыня с прохладной мятой.",
-    "image": "",
-    "badge": "-20%",
+    "image": "https://github.com/user-attachments/assets/fecbd5db-eb30-4934-8ea2-33d782966bb4",
+    "badge": "",
     "emoji": "🍈",
     "available": false
   },
@@ -163,8 +163,8 @@
     "price": 1090,
     "oldPrice": 1290,
     "description": "Манго со льдом, до 1000 затяжек.",
-    "image": "",
-    "badge": "-15%",
+    "image": "https://github.com/user-attachments/assets/fecbd5db-eb30-4934-8ea2-33d782966bb4",
+    "badge": "",
     "emoji": "🥭",
     "available": true
   },
@@ -176,7 +176,7 @@
     "price": 940,
     "oldPrice": 0,
     "description": "Кислый виноград с лёгкой свежестью.",
-    "image": "",
+    "image": "https://github.com/user-attachments/assets/fecbd5db-eb30-4934-8ea2-33d782966bb4",
     "badge": "",
     "emoji": "🍇",
     "available": true
