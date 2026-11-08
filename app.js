@@ -30,6 +30,10 @@ function buildEmojiEl(item, sizeClass) {
 
 /*
  * buildMediaEl(item, sizeClass):
+ * Медиа строится ТОЛЬКО у бренда и в модалке деталей вкуса:
+ *   карточка бренда (.brand-media), шапка окна бренда (.brand-head-media)
+ *   и #detailModal. Список вкусов внутри окна бренда (.flavor-row) медиа
+ *   не использует — там только текст и действия.
  * - image — непустая строка: создаём <img> с lazy-загрузкой, без referrer,
  *   width/height = 80 (карточка) или 120 (модалка), alt = item.name.
  *   До загрузки — класс .img-loading (opacity 0), после 'load' — .img-loaded
@@ -1113,16 +1117,15 @@ function createFavButton(product) {
    Окно бренда #brandModal — список всех вкусов
    ============================================================ */
 
-/* Одна строка вкуса: медиа 64px, название/категория/цена, ♥ и степпер */
+/* Одна строка вкуса внутри #brandModal — БЕЗ медиа: название, категория,
+   бейдж акции, цена, сердечко ❤ и кнопка «+ Добавить» → степпер «− N +».
+   Фото/эмодзи есть только у бренда (карточка и шапка окна бренда). */
 function createFlavorRow(item, query) {
   const row = document.createElement('div');
   row.className = 'flavor-row' + (item.available === false ? ' unavailable' : '');
   row.dataset.id = item.id;
 
-  const media = document.createElement('div');
-  media.className = 'flavor-media';
-  media.appendChild(buildMediaEl(item, 'flavor-img'));
-
+  /* Текстовый блок: название (serif), категория, бейдж акции */
   const info = document.createElement('div');
   info.className = 'flavor-info';
 
@@ -1131,17 +1134,17 @@ function createFlavorRow(item, query) {
   name.textContent = item.name || 'Без названия';
   info.appendChild(name);
 
+  const cat = document.createElement('p');
+  cat.className = 'flavor-cat';
+  cat.textContent = item.category || '';
+  info.appendChild(cat);
+
   if (item.badge) {
     const badge = document.createElement('span');
     badge.className = badgeClass(item.badge) + ' flavor-badge';
     badge.textContent = item.badge;
     info.appendChild(badge);
   }
-
-  const cat = document.createElement('p');
-  cat.className = 'flavor-cat';
-  cat.textContent = item.category || '';
-  info.appendChild(cat);
 
   const priceRow = document.createElement('div');
   priceRow.className = 'flavor-price-row';
@@ -1166,20 +1169,14 @@ function createFlavorRow(item, query) {
     info.appendChild(stock);
   }
 
+  /* Действия справа: сердечко ❤ и корзина (кнопка «+ Добавить» / степпер).
+     Для недоступного вкуса createControls отдаёт disabled-кнопку. */
   const actions = document.createElement('div');
   actions.className = 'flavor-actions';
   actions.appendChild(createFavButton(item));
+  actions.appendChild(createControls(item, 'Добавить'));
 
-  if (item.available === false) {
-    const holder = document.createElement('div');
-    holder.className = 'qty-row holder';
-    holder.setAttribute('aria-hidden', 'true');
-    actions.appendChild(holder);
-  } else {
-    actions.appendChild(createControls(item, 'Добавить'));
-  }
-
-  row.append(media, info, actions);
+  row.append(info, actions);
 
   if (query) {
     markText(name, query);
@@ -1371,62 +1368,61 @@ function createControls(product, label) {
   const controls = document.createElement('div');
   controls.className = 'card-controls';
 
-  if (product.available === false) {
-    const holder = document.createElement('div');
-    holder.className = 'qty-row holder';
-    holder.setAttribute('aria-hidden', 'true');
-    controls.appendChild(holder);
-    return controls;
+  const unavailable = product.available === false;
+  const qty = unavailable ? 0 : (state.cart.get(product.id) || 0);
+  const wrap = document.createElement('div');
+  wrap.className = 'qty-row';
+
+  if (qty > 0) {
+    const minus = document.createElement('button');
+    minus.type = 'button';
+    minus.className = 'qty-btn';
+    minus.textContent = '−';
+    minus.dataset.action = 'minus';
+    minus.dataset.id = product.id;
+    minus.setAttribute('aria-label', 'Убрать одну штуку');
+
+    const count = document.createElement('span');
+    count.className = 'qty-count';
+    count.textContent = qty;
+
+    const plus = document.createElement('button');
+    plus.type = 'button';
+    plus.className = 'qty-btn plus';
+    plus.textContent = '+';
+    plus.dataset.action = 'plus';
+    plus.dataset.id = product.id;
+    plus.setAttribute('aria-label', 'Добавить ещё одну штуку');
+
+    wrap.append(minus, count, plus);
   } else {
-    const qty = state.cart.get(product.id) || 0;
-    const wrap = document.createElement('div');
-    wrap.className = 'qty-row';
-
-    if (qty > 0) {
-      const minus = document.createElement('button');
-      minus.type = 'button';
-      minus.className = 'qty-btn';
-      minus.textContent = '−';
-      minus.dataset.action = 'minus';
-      minus.dataset.id = product.id;
-      minus.setAttribute('aria-label', 'Убрать одну штуку');
-
-      const count = document.createElement('span');
-      count.className = 'qty-count';
-      count.textContent = qty;
-
-      const plus = document.createElement('button');
-      plus.type = 'button';
-      plus.className = 'qty-btn plus';
-      plus.textContent = '+';
-      plus.dataset.action = 'plus';
-      plus.dataset.id = product.id;
-      plus.setAttribute('aria-label', 'Добавить ещё одну штуку');
-
-      wrap.append(minus, count, plus);
+    // Нет в корзине: «+ Добавить». У недоступного вкуса кнопка disabled.
+    const add = document.createElement('button');
+    add.type = 'button';
+    add.className = 'add-btn';
+    add.dataset.action = 'plus';
+    add.dataset.id = product.id;
+    if (unavailable) {
+      add.disabled = true;
+      add.setAttribute('aria-label', 'Нет в наличии');
     } else {
-      const add = document.createElement('button');
-      add.type = 'button';
-      add.className = 'add-btn';
-      add.dataset.action = 'plus';
-      add.dataset.id = product.id;
       add.setAttribute('aria-label', 'Добавить в корзину');
-      if (label) {
-        const plus = document.createElement('span');
-        plus.className = 'add-btn-plus';
-        plus.textContent = '+';
-        const text = document.createElement('span');
-        text.className = 'add-btn-label';
-        text.textContent = label;
-        add.append(plus, text);
-      } else {
-        add.textContent = '+';
-      }
-      wrap.appendChild(add);
     }
-
-    controls.appendChild(wrap);
+    if (label) {
+      const plus = document.createElement('span');
+      plus.className = 'add-btn-plus';
+      plus.textContent = '+';
+      const text = document.createElement('span');
+      text.className = 'add-btn-label';
+      text.textContent = label;
+      add.append(plus, text);
+    } else {
+      add.textContent = '+';
+    }
+    wrap.appendChild(add);
   }
+
+  controls.appendChild(wrap);
   return controls;
 }
 
@@ -2038,6 +2034,7 @@ brandModalBody.addEventListener('click', (event) => {
 
   const btn = target.closest('button[data-action]');
   if (btn) {
+    if (btn.disabled) return;
     const id = Number(btn.dataset.id);
     if (btn.dataset.action === 'plus') addToCart(id);
     else if (btn.dataset.action === 'minus') removeFromCart(id);

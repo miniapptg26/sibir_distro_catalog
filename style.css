@@ -2157,13 +2157,13 @@ html.light .skeleton-card {
   color: var(--muted);
 }
 
-/* ===== Строка вкуса .flavor-row ===== */
+/* ===== Строка вкуса .flavor-row — простой список БЕЗ медиа ===== */
 .flavor-row {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   margin: 0;
-  padding: 12px 16px;
+  padding: 11px 14px;
   border-bottom: 1px solid var(--line);
   cursor: pointer;
   transition: background 0.3s ease, opacity var(--t-fast) ease;
@@ -2177,53 +2177,34 @@ html.light .skeleton-card {
   opacity: 0.6;
 }
 
-.flavor-media {
-  position: relative;
-  flex: 0 0 64px;
-  width: 64px;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border-radius: 12px;
-  background: linear-gradient(135deg, rgba(139, 90, 43, 0.30), rgba(217, 164, 65, 0.10));
-  border: 1px solid rgba(139, 90, 43, 0.4);
-}
-
-.flavor-media .media-emoji {
-  font-size: 1.9rem;
-}
-
-.flavor-img {
-  width: 64px;
-  height: 64px;
-  object-fit: cover;
-  border-radius: 12px;
-  display: block;
-}
-
+/* Медиа у вкусов нет: фото/эмодзи — только у бренда
+   (.brand-media в карточке и .brand-head-media в шапке #brandModal).
+   Левый блок строки — текст, он растягивается и переносится. */
 .flavor-info {
   flex: 1 1 auto;
   min-width: 0;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 3px;
 }
 
 .flavor-name {
   margin: 0;
-  font-size: 0.92rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.95rem;
   font-weight: 700;
   line-height: 1.25;
   color: var(--text);
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .flavor-cat {
   margin: 0;
   font-size: 0.74rem;
   color: var(--muted);
+  overflow-wrap: break-word;
 }
 
 .flavor-row .flavor-badge {
@@ -2264,8 +2245,9 @@ html.light .skeleton-card {
 .flavor-actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   flex: 0 0 auto;
+  flex-shrink: 0;
 }
 
 .flavor-actions .fav-btn {
@@ -2291,6 +2273,14 @@ html.light .skeleton-card {
 
 .flavor-row .add-btn-label {
   font-size: 0.82rem;
+}
+
+/* Недоступный вкус: кнопка добавления отключена */
+.flavor-row .add-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  filter: saturate(0.6);
+  box-shadow: none;
 }
 
 .flavor-row .qty-row {
@@ -2404,14 +2394,7 @@ html.light .brand-add-all-btn {
 
   .flavor-row {
     padding: 10px 12px;
-    gap: 10px;
-  }
-
-  .flavor-media,
-  .flavor-img {
-    flex-basis: 56px;
-    width: 56px;
-    height: 56px;
+    gap: 9px;
   }
 
   .flavor-row .add-btn-label {
@@ -2444,7 +2427,7 @@ html.light .brand-add-all-btn {
   }
 
   .flavor-row {
-    padding: 14px 20px;
+    padding: 12px 18px;
   }
 }
 
