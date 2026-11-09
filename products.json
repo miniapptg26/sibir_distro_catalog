@@ -204,7 +204,7 @@
     "category": "Артоматизаторы",
     "price": 590,
     "description": "Сочный микс алоэ,клубники и киви",
-    "image": "https://github.com/user-attachments/assets/18c9c2cf-4133-44c6-b33b-93fa20847517,
+    "image": "https://github.com/user-attachments/assets/18c9c2cf-4133-44c6-b33b-93fa20847517",
     "emoji": "🫐",
     "available": true
   },
@@ -559,5 +559,5 @@
     "image": "https://github.com/user-attachments/assets/30a2e25b-61f3-4daa-9cdf-171ecf3bd371",
     "emoji": "🫐",
     "available": true
-  },
+  }
 ]
