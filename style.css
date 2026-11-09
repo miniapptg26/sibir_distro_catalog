@@ -1977,11 +1977,6 @@ mark {
   display: none;
 }
 
-/* Временная подсветка строки вкуса («Мне повезёт») */
-.flavor-highlight {
-  background: var(--highlight-bg);
-}
-
 /* Футер окна бренда */
 .brand-actions {
   margin: 0;
