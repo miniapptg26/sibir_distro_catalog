@@ -2000,43 +2000,7 @@ function exportSelection() {
   });
 }
 
-/* ===== «Мне повезёт» ===== */
-function spinLucky(items) {
-  const icons = ['🎲', '🎰', '⭐', '🎯', '🍀'];
-  let step = 0;
-  const total = 4; // 3-4 прокрутки эмодзи
 
-  luckyBtn.classList.add('spinning');
-  const timer = setInterval(() => {
-    luckyBtn.textContent = icons[step % icons.length];
-    step += 1;
-    if (step < total) return;
-
-    clearInterval(timer);
-    luckyBtn.classList.remove('spinning');
-    luckyBtn.textContent = '🎲';
-
-    const picked = items[Math.floor(Math.random() * items.length)];
-    if (!picked) return;
-
-    const group = state.brands.find((g) => g.items.some((it) => it.id === picked.id));
-    if (!group) { openDetail(picked); return; }
-
-    const visible = filteredFlavorsOf(group).some((it) => it.id === picked.id);
-    if (!visible) {
-      // Строка не видна из-за фильтров — открываем подробности сразу
-      openDetail(picked);
-      return;
-    }
-
-    if (state.openBrandId !== group.brand) {
-      openBrandModal(group.brand);
-    } else {
-      renderBrandModal();
-    }
-    setTimeout(() => highlightFlavorRow(picked.id), 80);
-  }, 120);
-}
 
 /* ===== События ===== */
 document.addEventListener('scroll', function () {
