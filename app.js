@@ -513,7 +513,7 @@ function handleHotkey(event) {
 
 /* ===== Поделиться ссылкой на каталог ===== */
 async function shareCatalog() {
-  const ok = await copyText(location.href);
+  const ok = await copyText("t.me/sibir_distro_bot/start");
   showToast(ok ? 'Ссылка скопирована' : 'Не удалось скопировать ссылку');
 }
 
