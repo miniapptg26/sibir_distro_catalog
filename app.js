@@ -1743,7 +1743,7 @@ function refreshViews() {
 /* ===== Отправка заказа ===== */
 
 /* Лимит длины готовой ссылки: Telegram ограничивает размер предзаполненного текста */
-const ORDER_LINK_LIMIT = 3800;
+const ORDER_LINK_LIMIT = 9999;
 
 /* Позиции корзины для заказа: [{ name, qty, sum }, ...] */
 function cartItemsForOrder() {
