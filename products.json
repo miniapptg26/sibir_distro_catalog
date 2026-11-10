@@ -779,5 +779,115 @@
     "image": "https://github.com/user-attachments/assets/a2f73dc1-f0b8-4690-9c25-0b8c6bb658f0",
     "emoji": "🫐",
     "available": true
+  },
+  {
+    "id": 72,
+    "name": "Ароматизатор «Ананас маракуйя» 30 мл",
+    "brand": "GTF",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/445bf676-739f-4f29-a3ad-ee674095f773",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 73,
+    "name": "Ароматизатор «Виноград» 30 мл",
+    "brand": "GTF",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/445bf676-739f-4f29-a3ad-ee674095f773",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 74,
+    "name": "Ароматизатор «Вишня кола» 30 мл",
+    "brand": "GTF",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/445bf676-739f-4f29-a3ad-ee674095f773",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 75,
+    "name": "Ароматизатор «Ежевика мята» 30 мл",
+    "brand": "GTF",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/445bf676-739f-4f29-a3ad-ee674095f773",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 76,
+    "name": "Ароматизатор «Манго энергетик» 30 мл",
+    "brand": "GTF",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/445bf676-739f-4f29-a3ad-ee674095f773",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 77,
+    "name": "Ароматизатор «Морковный фреш» 30 мл",
+    "brand": "GTF",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/445bf676-739f-4f29-a3ad-ee674095f773",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 78,
+    "name": "Ароматизатор «Розовый джем с малиной» 30 мл",
+    "brand": "GTF",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/445bf676-739f-4f29-a3ad-ee674095f773",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 79,
+    "name": "Ароматизатор «Черная смородина энергетик» 30 мл",
+    "brand": "GTF",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/445bf676-739f-4f29-a3ad-ee674095f773",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 80,
+    "name": "Ароматизатор «Черника малина лимон» 30 мл",
+    "brand": "GTF",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/445bf676-739f-4f29-a3ad-ee674095f773",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 81,
+    "name": "Ароматизатор «Черника мята» 30 мл",
+    "brand": "GTF",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/445bf676-739f-4f29-a3ad-ee674095f773",
+    "emoji": "🫐",
+    "available": true
   }
 ]
