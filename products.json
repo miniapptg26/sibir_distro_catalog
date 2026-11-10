@@ -889,5 +889,226 @@
     "image": "https://github.com/user-attachments/assets/445bf676-739f-4f29-a3ad-ee674095f773",
     "emoji": "🫐",
     "available": true
+  },
+  
+  {
+    "id": 82,
+    "name": "Ароматизатор «Барбарисовая конфета» 30 мл",
+    "brand": "RUSSIAN POWER",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/2d106bc5-64a9-4641-b78c-6979fe84d48c",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 83,
+    "name": "Ароматизатор «Вишневый компот» 30 мл",
+    "brand": "RUSSIAN POWER",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/2d106bc5-64a9-4641-b78c-6979fe84d48c",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 84,
+    "name": "Ароматизатор «Ежевика голубика» 30 мл",
+    "brand": "RUSSIAN POWER",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/2d106bc5-64a9-4641-b78c-6979fe84d48c",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 85,
+    "name": "Ароматизатор «Киви фейхоа» 30 мл",
+    "brand": "RUSSIAN POWER",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/2d106bc5-64a9-4641-b78c-6979fe84d48c",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 86,
+    "name": "Ароматизатор «Классический лимонад» 30 мл",
+    "brand": "RUSSIAN POWER",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/2d106bc5-64a9-4641-b78c-6979fe84d48c",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 87,
+    "name": "Ароматизатор «Малина морошка» 30 мл",
+    "brand": "RUSSIAN POWER",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/2d106bc5-64a9-4641-b78c-6979fe84d48c",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 88,
+    "name": "Ароматизатор «Малиновое варенье» 30 мл",
+    "brand": "RUSSIAN POWER",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/2d106bc5-64a9-4641-b78c-6979fe84d48c",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 89,
+    "name": "Ароматизатор «Морс клюква брусника» 30 мл",
+    "brand": "RUSSIAN POWER",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/2d106bc5-64a9-4641-b78c-6979fe84d48c",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 90,
+    "name": "Ароматизатор «Черная и красная смородина» 30 мл",
+    "brand": "RUSSIAN POWER",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/2d106bc5-64a9-4641-b78c-6979fe84d48c",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 91,
+    "name": "Ароматизатор «Ягодный кисель в брикетах» 30 мл",
+    "brand": "RUSSIAN POWER",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/2d106bc5-64a9-4641-b78c-6979fe84d48c",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 92,
+    "name": "Ароматизатор «Вино изабелла» 30 мл",
+    "brand": "GIZMO МЕЧТА",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/522ef24d-f675-4c13-bd1b-b5625f1eab3e",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 93,
+    "name": "Ароматизатор «Клубничный кисель» 30 мл",
+    "brand": "GIZMO МЕЧТА",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/522ef24d-f675-4c13-bd1b-b5625f1eab3e",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 94,
+    "name": "Ароматизатор «Малиновое варенье» 30 мл",
+    "brand": "GIZMO МЕЧТА",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/522ef24d-f675-4c13-bd1b-b5625f1eab3e",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 95,
+    "name": "Ароматизатор «Мороженное клубничное» 30 мл",
+    "brand": "GIZMO МЕЧТА",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/522ef24d-f675-4c13-bd1b-b5625f1eab3e",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 96,
+    "name": "Ароматизатор «Рассыпчатое печенье» 30 мл",
+    "brand": "GIZMO МЕЧТА",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/522ef24d-f675-4c13-bd1b-b5625f1eab3e",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 97,
+    "name": "Ароматизатор «Резинка жевательная мятная» 30 мл",
+    "brand": "GIZMO МЕЧТА",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/522ef24d-f675-4c13-bd1b-b5625f1eab3e",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 98,
+    "name": "Ароматизатор «Фруктовая конфета» 30 мл",
+    "brand": "GIZMO МЕЧТА",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/522ef24d-f675-4c13-bd1b-b5625f1eab3e",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 99,
+    "name": "Ароматизатор «Фруктово-земляничный чай» 30 мл",
+    "brand": "GIZMO МЕЧТА",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/522ef24d-f675-4c13-bd1b-b5625f1eab3e",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 100,
+    "name": "Ароматизатор «Фруктовый лед» 30 мл",
+    "brand": "GIZMO МЕЧТА",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/522ef24d-f675-4c13-bd1b-b5625f1eab3e",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 101,
+    "name": "Ароматизатор «Ягодный морс» 30 мл",
+    "brand": "GIZMO МЕЧТА",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/522ef24d-f675-4c13-bd1b-b5625f1eab3e",
+    "emoji": "🫐",
+    "available": true
   }
 ]
