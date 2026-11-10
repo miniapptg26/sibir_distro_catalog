@@ -1110,5 +1110,115 @@
     "image": "https://github.com/user-attachments/assets/522ef24d-f675-4c13-bd1b-b5625f1eab3e",
     "emoji": "🫐",
     "available": true
+  },
+    {
+    "id": 102,
+    "name": "Ароматизатор «Брусничный Морс» 30 мл",
+    "brand": "GIZMO TOXIC",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/1cd1a1ae-b28b-451f-9205-9a1b99e130fe",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 103,
+    "name": "Ароматизатор «Вишневый Компот» 30 мл",
+    "brand": "GIZMO TOXIC",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/1cd1a1ae-b28b-451f-9205-9a1b99e130fe",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 104,
+    "name": "Ароматизатор «Зеленое Манго» 30 мл",
+    "brand": "GIZMO TOXIC",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/1cd1a1ae-b28b-451f-9205-9a1b99e130fe",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 105,
+    "name": "Ароматизатор «Земляничная Жвачка» 30 мл",
+    "brand": "GIZMO TOXIC",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/1cd1a1ae-b28b-451f-9205-9a1b99e130fe",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 106,
+    "name": "Ароматизатор «Кислая Маракуйя» 30 мл",
+    "brand": "GIZMO TOXIC",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/1cd1a1ae-b28b-451f-9205-9a1b99e130fe",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 107,
+    "name": "Ароматизатор «Кислые Лесные Ягоды» 30 мл",
+    "brand": "GIZMO TOXIC",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/1cd1a1ae-b28b-451f-9205-9a1b99e130fe",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 108,
+    "name": "Ароматизатор «Кислый Малиновый Лимонад» 30 мл",
+    "brand": "GIZMO TOXIC",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/1cd1a1ae-b28b-451f-9205-9a1b99e130fe",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 109,
+    "name": "Ароматизатор «Кола Вишня» 30 мл",
+    "brand": "GIZMO TOXIC",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/1cd1a1ae-b28b-451f-9205-9a1b99e130fe",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 110,
+    "name": "Ароматизатор «Лимонад Байкал» 30 мл",
+    "brand": "GIZMO TOXIC",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/1cd1a1ae-b28b-451f-9205-9a1b99e130fe",
+    "emoji": "🫐",
+    "available": true
+  },
+  {
+    "id": 111,
+    "name": "Ароматизатор «Смузи из Киви и Малины» 30 мл",
+    "brand": "GIZMO TOXIC",
+    "category": "Артоматизаторы",
+    "price": 590,
+    "description": "Сочный микс алоэ,клубники и киви",
+    "image": "https://github.com/user-attachments/assets/1cd1a1ae-b28b-451f-9205-9a1b99e130fe",
+    "emoji": "🫐",
+    "available": true
   }
 ]
