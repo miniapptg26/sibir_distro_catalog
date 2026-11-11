@@ -4,7 +4,7 @@
 
 /* ===== Настройки ===== */
 const CONFIG = {
-  contactUsername: 'g179p' // Telegram-username продавца, без «@»
+  contactUsername: 'ZloyDoctorius' // Telegram-username продавца, без «@»
 };
 
 /* ===== Размер порции «Показать ещё» (только в памяти сессии) ===== */
