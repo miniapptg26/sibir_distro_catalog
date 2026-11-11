@@ -1993,7 +1993,7 @@ function exportSelection() {
   const text = lines.join('\n').replace(/\s+$/, '');
   copyText('https://t.me/sibir_distro').then((ok) => {
     showToast(ok
-      ? 'Прайс скопирован (' + groups.length + ' ' +
+      ? 'Ссылка на канал с прайсом скопирована  (' + groups.length + ' ' +
         plural(groups.length, ['бренд', 'бренда', 'брендов']) + ', ' +
         flavorsCount + ' ' + plural(flavorsCount, ['вкус', 'вкуса', 'вкусов']) + ')'
       : 'Не удалось скопировать прайс');
