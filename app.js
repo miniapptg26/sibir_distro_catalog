@@ -1991,7 +1991,7 @@ function exportSelection() {
   });
 
   const text = lines.join('\n').replace(/\s+$/, '');
-  copyText(text).then((ok) => {
+  copyText('https://t.me/sibir_distro').then((ok) => {
     showToast(ok
       ? 'Прайс скопирован (' + groups.length + ' ' +
         plural(groups.length, ['бренд', 'бренда', 'брендов']) + ', ' +
