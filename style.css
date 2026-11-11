@@ -253,42 +253,6 @@ h4 {
   transform: scale(0.92);
 }
 
-/* Кнопка «Мне повезёт» 🎲 — 40px круг, вторичная */
-.lucky-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  font-size: 1.1rem;
-  line-height: 1;
-  color: var(--text);
-  background: transparent;
-  border: 1px solid var(--line);
-  transition: transform var(--t-fast) ease, border-color var(--t-fast) ease, background var(--t-fast) ease;
-}
-
-.lucky-btn:hover {
-  border-color: var(--card-hover-line);
-  background: var(--bg2);
-  transform: scale(1.06);
-}
-
-.lucky-btn:active {
-  transform: scale(0.9);
-}
-
-.lucky-btn.spinning {
-  animation: lucky-shake 0.12s linear infinite;
-}
-
-@keyframes lucky-shake {
-  0% { transform: rotate(-14deg) scale(1.06); }
-  50% { transform: rotate(14deg) scale(1.06); }
-  100% { transform: rotate(-14deg) scale(1.06); }
-}
-
 /* Кнопка темы 🌙/☀️ — 36px круг, вторичная */
 .theme-toggle {
   display: inline-flex;
@@ -1975,6 +1939,11 @@ mark {
 
 .flavor-row .qty-row.holder {
   display: none;
+}
+
+/* Временная подсветка строки вкуса («Мне повезёт») */
+.flavor-highlight {
+  background: var(--highlight-bg);
 }
 
 /* Футер окна бренда */
